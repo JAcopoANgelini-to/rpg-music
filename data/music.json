@@ -7,17 +7,164 @@
                 {
                     "type": "folder",
                     "name": "I Pirati",
-                    "children": []
+                    "children": [
+                        {
+                            "type": "track",
+                            "title": "Battesimo del Sale (1).mp3",
+                            "artist": "RPG Music",
+                            "file": "music/D&D/I Pirati/Battesimo del Sale (1).mp3.mpeg"
+                        },
+                        {
+                            "type": "track",
+                            "title": "Pirata and the Black Abyss",
+                            "artist": "RPG Music",
+                            "file": "music/D&D/I Pirati/Pirata and the Black Abyss.mp3"
+                        }
+                    ]
                 },
                 {
                     "type": "folder",
                     "name": "Il Cuore",
-                    "children": []
+                    "children": [
+                        {
+                            "type": "track",
+                            "title": "Call of the Heart",
+                            "artist": "RPG Music",
+                            "file": "music/D&D/Il Cuore/Call of the Heart.mp3"
+                        },
+                        {
+                            "type": "track",
+                            "title": "Lucid Landslide",
+                            "artist": "RPG Music",
+                            "file": "music/D&D/Il Cuore/Lucid Landslide.mp3"
+                        },
+                        {
+                            "type": "track",
+                            "title": "The Heart Calls (1).mp3",
+                            "artist": "RPG Music",
+                            "file": "music/D&D/Il Cuore/The Heart Calls (1).mp3.mpeg"
+                        },
+                        {
+                            "type": "track",
+                            "title": "The Heart Calls.mp3",
+                            "artist": "RPG Music",
+                            "file": "music/D&D/Il Cuore/The Heart Calls.mp3.mpeg"
+                        }
+                    ]
+                },
+                {
+                    "type": "folder",
+                    "name": "L'Anfiteatro (Cattedrale)",
+                    "children": [
+                        {
+                            "type": "track",
+                            "title": "Cultus Vacui.mp3",
+                            "artist": "RPG Music",
+                            "file": "music/D&D/L'Anfiteatro (Cattedrale)/Cultus Vacui.mp3.mpeg"
+                        },
+                        {
+                            "type": "track",
+                            "title": "Defeat of the Void (1).mp3",
+                            "artist": "RPG Music",
+                            "file": "music/D&D/L'Anfiteatro (Cattedrale)/Defeat of the Void (1).mp3.mpeg"
+                        },
+                        {
+                            "type": "track",
+                            "title": "Defeat of the Void.mp3",
+                            "artist": "RPG Music",
+                            "file": "music/D&D/L'Anfiteatro (Cattedrale)/Defeat of the Void.mp3.mpeg"
+                        },
+                        {
+                            "type": "track",
+                            "title": "Defectio Inanis (1).mp3",
+                            "artist": "RPG Music",
+                            "file": "music/D&D/L'Anfiteatro (Cattedrale)/Defectio Inanis (1).mp3.mpeg"
+                        },
+                        {
+                            "type": "track",
+                            "title": "Defectio Inanis.mp3",
+                            "artist": "RPG Music",
+                            "file": "music/D&D/L'Anfiteatro (Cattedrale)/Defectio Inanis.mp3.mpeg"
+                        },
+                        {
+                            "type": "track",
+                            "title": "Tenebris Vox.mp3",
+                            "artist": "RPG Music",
+                            "file": "music/D&D/L'Anfiteatro (Cattedrale)/Tenebris Vox.mp3.mpeg"
+                        },
+                        {
+                            "type": "track",
+                            "title": "Vacuum Triumphat Omnia (1).mp3",
+                            "artist": "RPG Music",
+                            "file": "music/D&D/L'Anfiteatro (Cattedrale)/Vacuum Triumphat Omnia (1).mp3.mpeg"
+                        },
+                        {
+                            "type": "track",
+                            "title": "Vacuum Triumphat Omnia.mp3",
+                            "artist": "RPG Music",
+                            "file": "music/D&D/L'Anfiteatro (Cattedrale)/Vacuum Triumphat Omnia.mp3.mpeg"
+                        },
+                        {
+                            "type": "track",
+                            "title": "Victus Vacui,era.mp3",
+                            "artist": "RPG Music",
+                            "file": "music/D&D/L'Anfiteatro (Cattedrale)/Victus Vacui,era.mp3.mpeg"
+                        }
+                    ]
                 },
                 {
                     "type": "folder",
                     "name": "NPC Songs",
-                    "children": []
+                    "children": [
+                        {
+                            "type": "track",
+                            "title": "A Great Inventor",
+                            "artist": "RPG Music",
+                            "file": "music/D&D/NPC Songs/A Great Inventor.mp3"
+                        },
+                        {
+                            "type": "track",
+                            "title": "Glass Under Pressure.mp3",
+                            "artist": "RPG Music",
+                            "file": "music/D&D/NPC Songs/Glass Under Pressure.mp3.mpeg"
+                        },
+                        {
+                            "type": "track",
+                            "title": "Il Burattinaio - Theme 1",
+                            "artist": "RPG Music",
+                            "file": "music/D&D/NPC Songs/Il Burattinaio - Theme 1.mp3"
+                        },
+                        {
+                            "type": "track",
+                            "title": "Il Burattinaio - Theme 2",
+                            "artist": "RPG Music",
+                            "file": "music/D&D/NPC Songs/Il Burattinaio - Theme 2.mp3"
+                        },
+                        {
+                            "type": "track",
+                            "title": "Il Burattinaio - Theme 3",
+                            "artist": "RPG Music",
+                            "file": "music/D&D/NPC Songs/Il Burattinaio - Theme 3.mp3"
+                        },
+                        {
+                            "type": "track",
+                            "title": "Kheron tra le fratture.mp3",
+                            "artist": "RPG Music",
+                            "file": "music/D&D/NPC Songs/Kheron tra le fratture.mp3.mpeg"
+                        },
+                        {
+                            "type": "track",
+                            "title": "Patto di Spine e Sussurri.mp3",
+                            "artist": "RPG Music",
+                            "file": "music/D&D/NPC Songs/Patto di Spine e Sussurri.mp3.mpeg"
+                        },
+                        {
+                            "type": "track",
+                            "title": "This Demon",
+                            "artist": "RPG Music",
+                            "file": "music/D&D/NPC Songs/This Demon.mp3"
+                        }
+                    ]
                 },
                 {
                     "type": "folder",
@@ -43,6 +190,12 @@
                         },
                         {
                             "type": "track",
+                            "title": "Sotto le Fronde di Lùrien",
+                            "artist": "RPG Music",
+                            "file": "music/D&D/PG Theme Songs/Sotto le Fronde di Lùrien.mp3"
+                        },
+                        {
+                            "type": "track",
                             "title": "The Hollow Cleric",
                             "artist": "RPG Music",
                             "file": "music/D&D/PG Theme Songs/The Hollow Cleric.mp3"
@@ -58,7 +211,38 @@
                 {
                     "type": "folder",
                     "name": "To The End",
-                    "children": []
+                    "children": [
+                        {
+                            "type": "track",
+                            "title": "Before the First Shell",
+                            "artist": "RPG Music",
+                            "file": "music/D&D/To The End/Before the First Shell.mp3"
+                        },
+                        {
+                            "type": "track",
+                            "title": "Fault Line Crown",
+                            "artist": "RPG Music",
+                            "file": "music/D&D/To The End/Fault Line Crown.mp3"
+                        },
+                        {
+                            "type": "track",
+                            "title": "Fault Lines Open",
+                            "artist": "RPG Music",
+                            "file": "music/D&D/To The End/Fault Lines Open.mp3"
+                        },
+                        {
+                            "type": "track",
+                            "title": "Inno della Repubblica Tecnocratica degli Orchi",
+                            "artist": "RPG Music",
+                            "file": "music/D&D/To The End/Inno della Repubblica Tecnocratica degli Orchi.mp3"
+                        },
+                        {
+                            "type": "track",
+                            "title": "Patto d’Ombra",
+                            "artist": "RPG Music",
+                            "file": "music/D&D/To The End/Patto d’Ombra.mp3"
+                        }
+                    ]
                 }
             ]
         }
