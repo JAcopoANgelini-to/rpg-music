@@ -16,23 +16,25 @@ const duration = document.getElementById("duration");
 const trackList = document.getElementById("trackList");
 
 
-/* =========================================
-   LIBRERIA
-========================================= */
+// =========================================
+// NAVIGAZIONE
+// =========================================
+
+const navItems = document.querySelectorAll(".nav-item");
 
 let library = [];
-
 let currentFolder = null;
-
 let folderHistory = [];
 
 let tracks = [];
-
 let currentTrackIndex = 0;
 
-/* =========================================
-   CARICAMENTO MUSIC.JSON
-========================================= */
+let allTracks = [];
+
+
+// =========================================
+// CARICAMENTO MUSIC.JSON
+// =========================================
 
 fetch("data/music.json")
     .then(response => {
@@ -50,6 +52,8 @@ fetch("data/music.json")
 
         currentFolder = library;
 
+        allTracks = getAllTracks(library);
+
         renderFolder();
 
     })
@@ -63,9 +67,42 @@ fetch("data/music.json")
     });
 
 
-/* =========================================
-   FORMATTAZIONE TEMPO
-========================================= */
+// =========================================
+// TROVA TUTTE LE CANZONI
+// =========================================
+
+function getAllTracks(items) {
+
+    let result = [];
+
+    items.forEach(item => {
+
+        if (item.type === "track") {
+
+            result.push(item);
+
+        }
+
+        if (
+            item.type === "folder" &&
+            item.children
+        ) {
+
+            result = result.concat(
+                getAllTracks(item.children)
+            );
+
+        }
+
+    });
+
+    return result;
+}
+
+
+// =========================================
+// FORMATTAZIONE TEMPO
+// =========================================
 
 function formatTime(seconds) {
 
@@ -73,7 +110,8 @@ function formatTime(seconds) {
         return "0:00";
     }
 
-    const minutes = Math.floor(seconds / 60);
+    const minutes =
+        Math.floor(seconds / 60);
 
     const remainingSeconds =
         Math.floor(seconds % 60)
@@ -84,24 +122,26 @@ function formatTime(seconds) {
 }
 
 
-/* =========================================
-   MOSTRA CARTELLA
-========================================= */
+// =========================================
+// MOSTRA CARTELLA
+// =========================================
 
 function renderFolder() {
 
     trackList.innerHTML = "";
 
-    /*
-        Puliamo la lista dei brani
-        della cartella corrente.
-    */
-
     tracks = [];
 
-    /*
-        Pulsante INDIETRO
-    */
+    // Titolo
+
+    const title = document.createElement("h2");
+
+    title.textContent = "Libreria";
+
+    trackList.appendChild(title);
+
+
+    // Pulsante indietro
 
     if (currentFolder !== library) {
 
@@ -111,7 +151,8 @@ function renderFolder() {
         backButton.className = "folder";
 
         backButton.innerHTML = `
-            ← Indietro
+            <div class="folder-icon">←</div>
+            <div class="folder-name">Indietro</div>
         `;
 
         backButton.addEventListener(
@@ -124,24 +165,25 @@ function renderFolder() {
     }
 
 
-    /*
-        Elementi della cartella
-    */
+    // Elementi
 
     currentFolder.forEach(item => {
 
-        /*
-            CARTELLA
-        */
+
+        // =====================================
+        // CARTELLA
+        // =====================================
 
         if (item.type === "folder") {
 
             const folderElement =
                 document.createElement("div");
 
-            folderElement.className = "folder";
+            folderElement.className =
+                "folder";
 
             folderElement.innerHTML = `
+
                 <div class="folder-icon">
                     📁
                 </div>
@@ -149,13 +191,16 @@ function renderFolder() {
                 <div class="folder-name">
                     ${item.name}
                 </div>
+
             `;
 
             folderElement.addEventListener(
                 "click",
                 () => {
 
-                    folderHistory.push(currentFolder);
+                    folderHistory.push(
+                        currentFolder
+                    );
 
                     currentFolder =
                         item.children;
@@ -165,113 +210,20 @@ function renderFolder() {
                 }
             );
 
-            trackList.appendChild(folderElement);
+            trackList.appendChild(
+                folderElement
+            );
 
         }
 
 
-        /*
-            CANZONE
-        */
+        // =====================================
+        // CANZONE
+        // =====================================
 
         if (item.type === "track") {
 
-            tracks.push(item);
-
-            const trackElement =
-                document.createElement("div");
-
-            trackElement.className = "track";
-
-            const trackIndex =
-                tracks.length - 1;
-
-            trackElement.innerHTML = `
-
-                <div class="track-number">
-                    ${trackIndex + 1}
-                </div>
-
-                <div class="track-cover">
-                    🎵
-                </div>
-
-                <div class="track-details">
-
-                    <div class="track-title">
-                        ${item.title}
-                    </div>
-
-                    <div class="track-artist">
-                        ${item.artist}
-                    </div>
-
-                </div>
-
-                <button class="download-button">
-                    ↓ Download
-                </button>
-
-            `;
-
-
-            /*
-                CLICK SULLA CANZONE
-            */
-
-            trackElement.addEventListener(
-                "click",
-                event => {
-
-                    /*
-                        Evitiamo che il click
-                        sul Download riproduca
-                        la canzone.
-                    */
-
-                    if (
-                        event.target.classList.contains(
-                            "download-button"
-                        )
-                    ) {
-                        return;
-                    }
-
-                    currentTrackIndex =
-                        trackIndex;
-
-                    loadTrack(trackIndex);
-
-                    audioPlayer.play();
-
-                    playButton.textContent = "⏸";
-
-                }
-            );
-
-
-            /*
-                DOWNLOAD
-            */
-
-            const downloadButton =
-                trackElement.querySelector(
-                    ".download-button"
-                );
-
-            downloadButton.addEventListener(
-                "click",
-                event => {
-
-                    event.stopPropagation();
-
-                    downloadTrack(item);
-
-                }
-            );
-
-
-            trackList.appendChild(trackElement);
+            addTrackToList(item);
 
         }
 
@@ -280,9 +232,108 @@ function renderFolder() {
 }
 
 
-/* =========================================
-   INDIETRO
-========================================= */
+// =========================================
+// AGGIUNGI CANZONE ALLA LISTA
+// =========================================
+
+function addTrackToList(track) {
+
+    tracks.push(track);
+
+    const trackIndex =
+        tracks.length - 1;
+
+    const trackElement =
+        document.createElement("div");
+
+    trackElement.className =
+        "track";
+
+    trackElement.innerHTML = `
+
+        <div class="track-number">
+            ${trackIndex + 1}
+        </div>
+
+        <div class="track-cover">
+            🎵
+        </div>
+
+        <div class="track-details">
+
+            <div class="track-title">
+                ${track.title}
+            </div>
+
+            <div class="track-artist">
+                ${track.artist}
+            </div>
+
+        </div>
+
+        <button class="download-button">
+            ↓ Download
+        </button>
+
+    `;
+
+
+    // Click canzone
+
+    trackElement.addEventListener(
+        "click",
+        event => {
+
+            if (
+                event.target.classList.contains(
+                    "download-button"
+                )
+            ) {
+                return;
+            }
+
+            currentTrackIndex =
+                trackIndex;
+
+            loadTrack(trackIndex);
+
+            audioPlayer.play();
+
+            playButton.textContent = "⏸";
+
+        }
+    );
+
+
+    // Download
+
+    const downloadButton =
+        trackElement.querySelector(
+            ".download-button"
+        );
+
+    downloadButton.addEventListener(
+        "click",
+        event => {
+
+            event.stopPropagation();
+
+            downloadTrack(track);
+
+        }
+    );
+
+
+    trackList.appendChild(
+        trackElement
+    );
+
+}
+
+
+// =========================================
+// INDIETRO
+// =========================================
 
 function goBack() {
 
@@ -298,19 +349,260 @@ function goBack() {
 }
 
 
-/* =========================================
-   CARICA BRANO
-========================================= */
+// =========================================
+// HOME / LIBRERIA
+// =========================================
+
+function showLibrary() {
+
+    currentFolder = library;
+
+    folderHistory = [];
+
+    renderFolder();
+
+}
+
+
+// =========================================
+// RICERCA
+// =========================================
+
+function showSearch() {
+
+    trackList.innerHTML = "";
+
+    tracks = [];
+
+    const searchTitle =
+        document.createElement("h2");
+
+    searchTitle.textContent =
+        "Cerca";
+
+    trackList.appendChild(
+        searchTitle
+    );
+
+
+    const searchInput =
+        document.createElement("input");
+
+    searchInput.type = "text";
+
+    searchInput.placeholder =
+        "Cerca una canzone...";
+
+    searchInput.className =
+        "search-input";
+
+    trackList.appendChild(
+        searchInput
+    );
+
+
+    const results =
+        document.createElement("div");
+
+    results.className =
+        "search-results";
+
+    trackList.appendChild(
+        results
+    );
+
+
+    searchInput.focus();
+
+
+    searchInput.addEventListener(
+        "input",
+        () => {
+
+            const query =
+                searchInput.value
+                    .toLowerCase()
+                    .trim();
+
+
+            results.innerHTML = "";
+
+            tracks = [];
+
+
+            if (!query) {
+
+                return;
+
+            }
+
+
+            const matchingTracks =
+                allTracks.filter(track => {
+
+                    const title =
+                        track.title
+                            .toLowerCase();
+
+                    const artist =
+                        track.artist
+                            .toLowerCase();
+
+                    return (
+                        title.includes(query) ||
+                        artist.includes(query)
+                    );
+
+                });
+
+
+            if (
+                matchingTracks.length === 0
+            ) {
+
+                results.innerHTML = `
+                    <p>
+                        Nessun brano trovato.
+                    </p>
+                `;
+
+                return;
+
+            }
+
+
+            matchingTracks.forEach(
+                track => {
+
+                    addTrackToSearchResults(
+                        track,
+                        results
+                    );
+
+                }
+            );
+
+        }
+    );
+
+}
+
+
+// =========================================
+// RISULTATI RICERCA
+// =========================================
+
+function addTrackToSearchResults(
+    track,
+    container
+) {
+
+    const trackElement =
+        document.createElement("div");
+
+    trackElement.className =
+        "track";
+
+
+    trackElement.innerHTML = `
+
+        <div class="track-cover">
+            🎵
+        </div>
+
+        <div class="track-details">
+
+            <div class="track-title">
+                ${track.title}
+            </div>
+
+            <div class="track-artist">
+                ${track.artist}
+            </div>
+
+        </div>
+
+        <button class="download-button">
+            ↓ Download
+        </button>
+
+    `;
+
+
+    trackElement.addEventListener(
+        "click",
+        event => {
+
+            if (
+                event.target.classList.contains(
+                    "download-button"
+                )
+            ) {
+                return;
+            }
+
+            /*
+                Per la ricerca utilizziamo
+                direttamente il brano.
+            */
+
+            audioPlayer.src =
+                track.file;
+
+            currentTitle.textContent =
+                track.title;
+
+            currentArtist.textContent =
+                track.artist;
+
+            audioPlayer.play();
+
+            playButton.textContent =
+                "⏸";
+
+        }
+    );
+
+
+    const downloadButton =
+        trackElement.querySelector(
+            ".download-button"
+        );
+
+    downloadButton.addEventListener(
+        "click",
+        event => {
+
+            event.stopPropagation();
+
+            downloadTrack(track);
+
+        }
+    );
+
+
+    container.appendChild(
+        trackElement
+    );
+
+}
+
+
+// =========================================
+// CARICA BRANO
+// =========================================
 
 function loadTrack(index) {
 
-    const track = tracks[index];
+    const track =
+        tracks[index];
 
     if (!track) {
         return;
     }
 
-    audioPlayer.src = track.file;
+    audioPlayer.src =
+        track.file;
 
     currentTitle.textContent =
         track.title;
@@ -323,9 +615,9 @@ function loadTrack(index) {
 }
 
 
-/* =========================================
-   PLAY / PAUSE
-========================================= */
+// =========================================
+// PLAY / PAUSE
+// =========================================
 
 function togglePlay() {
 
@@ -335,9 +627,20 @@ function togglePlay() {
 
     if (audioPlayer.paused) {
 
-        audioPlayer.play();
+        audioPlayer.play()
+            .then(() => {
 
-        playButton.textContent = "⏸";
+                playButton.textContent = "⏸";
+
+            })
+            .catch(error => {
+
+                console.error(
+                    "Errore durante il play:",
+                    error
+                );
+
+            });
 
     } else {
 
@@ -348,11 +651,45 @@ function togglePlay() {
     }
 
 }
+audioPlayer.addEventListener(
+    "play",
+    () => {
+
+        playButton.textContent = "⏸";
+
+    }
+);
 
 
-/* =========================================
-   PROSSIMO BRANO
-========================================= */
+audioPlayer.addEventListener(
+    "pause",
+    () => {
+
+        playButton.textContent = "▶";
+
+    }
+);
+// =========================================
+// EVENTI PLAYER
+// =========================================
+
+playButton.addEventListener(
+    "click",
+    togglePlay
+);
+
+nextButton.addEventListener(
+    "click",
+    nextTrack
+);
+
+previousButton.addEventListener(
+    "click",
+    previousTrack
+);
+// =========================================
+// PROSSIMO
+// =========================================
 
 function nextTrack() {
 
@@ -366,21 +703,26 @@ function nextTrack() {
         currentTrackIndex >=
         tracks.length
     ) {
+
         currentTrackIndex = 0;
+
     }
 
-    loadTrack(currentTrackIndex);
+    loadTrack(
+        currentTrackIndex
+    );
 
     audioPlayer.play();
 
-    playButton.textContent = "⏸";
+    playButton.textContent =
+        "⏸";
 
 }
 
 
-/* =========================================
-   BRANO PRECEDENTE
-========================================= */
+// =========================================
+// PRECEDENTE
+// =========================================
 
 function previousTrack() {
 
@@ -390,25 +732,30 @@ function previousTrack() {
 
     currentTrackIndex--;
 
-    if (currentTrackIndex < 0) {
+    if (
+        currentTrackIndex < 0
+    ) {
 
         currentTrackIndex =
             tracks.length - 1;
 
     }
 
-    loadTrack(currentTrackIndex);
+    loadTrack(
+        currentTrackIndex
+    );
 
     audioPlayer.play();
 
-    playButton.textContent = "⏸";
+    playButton.textContent =
+        "⏸";
 
 }
 
 
-/* =========================================
-   PROGRESS BAR
-========================================= */
+// =========================================
+// PROGRESS BAR
+// =========================================
 
 audioPlayer.addEventListener(
     "timeupdate",
@@ -424,7 +771,8 @@ audioPlayer.addEventListener(
                 audioPlayer.duration
             ) * 100;
 
-        progressBar.value = progress;
+        progressBar.value =
+            progress;
 
         currentTime.textContent =
             formatTime(
@@ -435,9 +783,9 @@ audioPlayer.addEventListener(
 );
 
 
-/* =========================================
-   DURATA
-========================================= */
+// =========================================
+// DURATA
+// =========================================
 
 audioPlayer.addEventListener(
     "loadedmetadata",
@@ -452,9 +800,9 @@ audioPlayer.addEventListener(
 );
 
 
-/* =========================================
-   SEEK
-========================================= */
+// =========================================
+// SEEK
+// =========================================
 
 progressBar.addEventListener(
     "input",
@@ -475,9 +823,9 @@ progressBar.addEventListener(
 );
 
 
-/* =========================================
-   VOLUME
-========================================= */
+// =========================================
+// VOLUME
+// =========================================
 
 volumeBar.addEventListener(
     "input",
@@ -490,29 +838,68 @@ volumeBar.addEventListener(
 );
 
 
-/* =========================================
-   EVENTI PLAYER
-========================================= */
+// =========================================
+// NAVIGAZIONE SIDEBAR
+// =========================================
 
-playButton.addEventListener(
-    "click",
-    togglePlay
+navItems.forEach(
+    (button, index) => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                navItems.forEach(
+                    item => {
+
+                        item.classList.remove(
+                            "active"
+                        );
+
+                    }
+                );
+
+                button.classList.add(
+                    "active"
+                );
+
+
+                if (index === 0) {
+
+                    // HOME
+
+                    showLibrary();
+
+                }
+
+
+                if (index === 1) {
+
+                    // CERCA
+
+                    showSearch();
+
+                }
+
+
+                if (index === 2) {
+
+                    // LIBRERIA
+
+                    showLibrary();
+
+                }
+
+            }
+        );
+
+    }
 );
 
-nextButton.addEventListener(
-    "click",
-    nextTrack
-);
 
-previousButton.addEventListener(
-    "click",
-    previousTrack
-);
-
-
-/* =========================================
-   FINE BRANO
-========================================= */
+// =========================================
+// FINE CANZONE
+// =========================================
 
 audioPlayer.addEventListener(
     "ended",
@@ -524,20 +911,24 @@ audioPlayer.addEventListener(
 );
 
 
-/* =========================================
-   DOWNLOAD
-========================================= */
+// =========================================
+// DOWNLOAD
+// =========================================
 
 function downloadTrack(track) {
 
     const link =
         document.createElement("a");
 
-    link.href = track.file;
+    link.href =
+        track.file;
 
-    link.download = "";
+    link.download =
+        track.title;
 
-    document.body.appendChild(link);
+    document.body.appendChild(
+        link
+    );
 
     link.click();
 

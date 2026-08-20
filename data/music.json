@@ -2,31 +2,63 @@
     "library": [
         {
             "type": "folder",
-            "name": "electronic",
+            "name": "D&D",
             "children": [
                 {
                     "type": "folder",
-                    "name": "singles",
+                    "name": "I Pirati",
+                    "children": []
+                },
+                {
+                    "type": "folder",
+                    "name": "Il Cuore",
+                    "children": []
+                },
+                {
+                    "type": "folder",
+                    "name": "NPC Songs",
+                    "children": []
+                },
+                {
+                    "type": "folder",
+                    "name": "PG Theme Songs",
                     "children": [
                         {
                             "type": "track",
-                            "title": "Glass Under Pressure",
+                            "title": "Jade and Gold",
                             "artist": "RPG Music",
-                            "file": "music/electronic/singles/Glass Under Pressure.mpeg"
+                            "file": "music/D&D/PG Theme Songs/Jade and Gold.mp3"
+                        },
+                        {
+                            "type": "track",
+                            "title": "Not Only a Merchant (Energetic Cut)",
+                            "artist": "RPG Music",
+                            "file": "music/D&D/PG Theme Songs/Not Only a Merchant (Energetic Cut).mp3"
+                        },
+                        {
+                            "type": "track",
+                            "title": "Not Only a Merchant",
+                            "artist": "RPG Music",
+                            "file": "music/D&D/PG Theme Songs/Not Only a Merchant.mp3"
+                        },
+                        {
+                            "type": "track",
+                            "title": "The Hollow Cleric",
+                            "artist": "RPG Music",
+                            "file": "music/D&D/PG Theme Songs/The Hollow Cleric.mp3"
+                        },
+                        {
+                            "type": "track",
+                            "title": "The Summer's Daugther (Energetic Mix)",
+                            "artist": "RPG Music",
+                            "file": "music/D&D/PG Theme Songs/The Summer's Daugther (Energetic Mix).mp3"
                         }
                     ]
-                }
-            ]
-        },
-        {
-            "type": "folder",
-            "name": "pop",
-            "children": [
+                },
                 {
-                    "type": "track",
-                    "title": "A Great Inventor",
-                    "artist": "RPG Music",
-                    "file": "music/pop/A Great Inventor.mpeg"
+                    "type": "folder",
+                    "name": "To The End",
+                    "children": []
                 }
             ]
         }
