@@ -7,14 +7,28 @@
                 {
                     "type": "folder",
                     "name": "singles",
-                    "children": []
+                    "children": [
+                        {
+                            "type": "track",
+                            "title": "Glass Under Pressure",
+                            "artist": "RPG Music",
+                            "file": "music/electronic/singles/Glass Under Pressure.mpeg"
+                        }
+                    ]
                 }
             ]
         },
         {
             "type": "folder",
             "name": "pop",
-            "children": []
+            "children": [
+                {
+                    "type": "track",
+                    "title": "A Great Inventor",
+                    "artist": "RPG Music",
+                    "file": "music/pop/A Great Inventor.mpeg"
+                }
+            ]
         }
     ]
 }

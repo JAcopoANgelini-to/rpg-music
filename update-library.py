@@ -22,7 +22,8 @@ AUDIO_EXTENSIONS = {
     ".wav",
     ".ogg",
     ".m4a",
-    ".flac"
+    ".flac",
+    ".mpeg"
 }
 
 
