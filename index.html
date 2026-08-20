@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>RPG Music</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+
+            <div class="logo">
+                🎵 RPG Music
+            </div>
+
+            <nav>
+                <button class="nav-item active">
+                    🏠 Home
+                </button>
+
+                <button class="nav-item">
+                    🔍 Cerca
+                </button>
+
+                <button class="nav-item">
+                    🎵 Libreria
+                </button>
+            </nav>
+
+        </aside>
+
+
+        <!-- CONTENUTO PRINCIPALE -->
+        <main class="main">
+
+            <header class="topbar">
+
+                <h1>La mia musica</h1>
+
+            </header>
+
+
+            <section class="content">
+
+                <h2>Brani</h2>
+
+                <div id="trackList" class="track-list">
+
+                    <!--
+                        I brani verranno inseriti
+                        automaticamente da JavaScript
+                    -->
+
+                </div>
+
+            </section>
+
+        </main>
+
+
+        <!-- PLAYER -->
+        <footer class="player">
+
+            <div class="player-track">
+
+                <div class="cover">
+                    🎵
+                </div>
+
+                <div class="track-info">
+
+                    <div id="currentTitle">
+                        Nessun brano
+                    </div>
+
+                    <div id="currentArtist">
+                        —
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="player-controls">
+
+                <button id="previousButton">
+                    ⏮
+                </button>
+
+                <button id="playButton" class="play-button">
+                    ▶
+                </button>
+
+                <button id="nextButton">
+                    ⏭
+                </button>
+
+            </div>
+
+
+            <div class="player-progress">
+
+                <span id="currentTime">
+                    0:00
+                </span>
+
+                <input
+                    id="progressBar"
+                    type="range"
+                    min="0"
+                    max="100"
+                    value="0"
+                >
+
+                <span id="duration">
+                    0:00
+                </span>
+
+            </div>
+
+
+            <div class="player-volume">
+
+                🔊
+
+                <input
+                    id="volumeBar"
+                    type="range"
+                    min="0"
+                    max="1"
+                    step="0.01"
+                    value="1"
+                >
+
+            </div>
+
+        </footer>
+
+    </div>
+
+
+    <!-- AUDIO -->
+    <audio id="audioPlayer"></audio>
+
+
+    <script src="app.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+    "library": [
+        {
+            "type": "folder",
+            "name": "electronic",
+            "children": [
+                {
+                    "type": "folder",
+                    "name": "singles",
+                    "children": []
+                }
+            ]
+        },
+        {
+            "type": "folder",
+            "name": "pop",
+            "children": []
+        }
+    ]
+}
